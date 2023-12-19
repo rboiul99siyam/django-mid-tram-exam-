@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="d-flex container justify-content-around align-items-center flex-wrap gap-5">
+  <div class="card cardHome mt-5 mb-5 p-5" style="width: 20rem">
+    <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.image.url }}" />
+    <div class="card-body text-center">
+      <p class="card-title">Car name: {{ car.car_name }}</p>
+      <p class="card-title">Car price: {{ car.car_price }}</p>
+      <p class="card-title">Car quantity: {{ car.quan }}</p>
+      {% for b in car.brand.all %}
+      <p class="card-title"> Car brand : {{b.brand_name }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+
+  <div class=" container mb-5 mt-5 p-5">
+    <button class="btn btn-warning p-2"> <a class="text-decoration-none text-dark"
+        href="{% url 'updata_profile' %}">Change profile now </a> </button>
+    <button class="btn btn-success"> <a class="text-decoration-none text-light" href="{% url 'password' %}">Change
+        password now </a> </button>
+  </div>
+  {% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="d-flex container mt-5 mb-5 justify-content-around align-items-center gap-5">
+  <div class="col-6">
+    <h1 class="text-center text-success fw-bold">
+      <span style="font-size: 90px" class="text-warning">E</span>k<span style="font-size: 50px"
+        class="text-danger">D</span>am ca<span style="font-size: 50px" class="text-danger">R</span>
+    </h1>
+    <h1 style="margin-left: 30%" class="text-center fw-bold text-success">
+      <span style="font-size: 50px" class="text-danger">M</span>ar<span style="font-size: 50px"
+        class="text-danger">T</span>
+      <span style="font-size: 80px" class="text-warning">L</span>imited.....
+    </h1>
+    <p class="ms-5 mt-2">
+      Welcome to Ekdam CarMart Ltd... Your Gateway to Exceptional Deals! Looking
+      to buy or sell a car? You're in the right place!
+      <a href="{% url 'home' %}">Ekdam carMart Ltd.... </a> is your premier
+      destination for hassle-free car transactions. Whether you're in the market
+      for a new ride or eager to find a new owner for your current vehicle,
+      we've got you covered.
+    </p>
+  </div>
+  <div class="col-6">
+    <img class="w-100 rounded homeImg" src="{%static 'car1.png' %}" alt="{% static 'car1.png' %}" />
+  </div>
+</div>
+
+<div class="container">
+  {% for b in brand %}
+  <a href="{% url 'slugdata' b.slug %}" class="btn btn-success"> {{b.brand_name}}</a>
+  {% endfor %}
+
+</div>
+
+<h1 class="container"> Total Car : {{data|length}}</h1>
+<div class="d-flex container justify-content-around align-items-center flex-wrap gap-5">
+
+
+  {% for p in data %}
+  <div class="card cardHome mt-5 mb-5 p-5" style="width: 20rem">
+    <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.image.url }}" />
+    <div class="card-body text-center">
+      <p class="card-title">Car name: {{ p.car_name }}</p>
+      <p class="card-title">Car price: {{ p.car_price }}</p>
+      {% for b in p.brand.all %}
+      <p class="card-title"> Car brand : {{b.brand_name }}</p>
+      {% endfor %}
+      <a href="{% url 'del' p.id %}" class="btn btn-warning">View Details</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
